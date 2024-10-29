@@ -1,0 +1,80 @@
+.card {
+  max-width: 100%;
+  background-color: rgb(20, 20, 20);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  color: rgb(249, 248, 248);
+  font-size: 0.75rem;
+}
+
+.locationInputContainer {
+  margin: 30px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.location {
+  font-size: 2rem;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.date {
+  text-align: center;
+  margin: 10px;
+  font-size: 1.1rem;
+}
+
+.temperatures {
+  text-align: center;
+  font-size: 3rem;
+  margin: 15px;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.conditions {
+  text-align: center;
+  margin: 30px;
+  font-size: 1.25rem;
+}
+
+@media (max-width: 894px) {
+  .location {
+    font-size: 1.25rem;
+    margin-top: 25px;
+  }
+
+  .icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .temperatures {
+    font-size: 2rem;
+  }
+
+  .conditions {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 574px) {
+  .card {
+    max-width: 60%;
+    margin: 0 auto 20px auto;
+  }
+}

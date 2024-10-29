@@ -1,0 +1,26 @@
+.tempButtonsContainer {
+  display: flex;
+  gap: 5px;
+}
+
+.tempButton {
+  border-radius: 50%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.tempButton:hover {
+  background-color: #45a049;
+}
+
+.active {
+  background-color: #45a049;
+}

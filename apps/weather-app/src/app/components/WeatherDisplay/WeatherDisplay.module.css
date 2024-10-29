@@ -1,0 +1,79 @@
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto;
+  padding: 20px;
+}
+
+.todayWeatherCard {
+  grid-row: span 4;
+}
+
+.dayOverview {
+  color: white;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.overviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Right Column Items */
+.todayStats,
+.todayTempsAndSun {
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+}
+
+.todayTempsAndSun {
+  padding: 20px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.forecastSection {
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.forecastContainer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 894px) {
+  .forecastContainer {
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .overviewHeader {
+    margin-bottom: 5px;
+  }
+
+  .overviewHeader h2,
+  .forecastSection h2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 574px) {
+  .dashboardGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 20px;
+  }
+}

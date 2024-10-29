@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+}
+
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.locationButton {
+  border-radius: 50%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.locationButton:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 894px) {
+  .formContainer input {
+    font-size: 0.5rem;
+  }
+
+  .locationButton {
+    width: 15px;
+    height: 15px;
+    font-size: 15px;
+  }
+}
