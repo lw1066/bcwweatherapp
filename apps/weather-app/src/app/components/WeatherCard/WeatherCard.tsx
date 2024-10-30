@@ -1,5 +1,5 @@
 import React from 'react';
-import iconMap from '../../utils/iconMap';
+import { getIconForCondition } from '../../utils/iconMap';
 import { ForecastDay } from '@weather-app/types/weather';
 import styles from './WeatherCard.module.css';
 import { formatDate } from '../../utils/formatDate';
@@ -17,7 +17,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   date,
   isTomorrow = false,
 }) => {
-  const iconSrc = iconMap[icon] || iconMap['clear-day'];
+  const iconSrc = getIconForCondition(icon);
   const { unit } = useTemperature();
 
   const formattedDate = formatDate(date);

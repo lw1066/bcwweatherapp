@@ -18,8 +18,7 @@ export async function POST(req: Request) {
     console.error('server error:', error);
     const statusCode =
       error instanceof AxiosError &&
-      error.message ===
-        'Invalid location. Please check the spelling or try a different location.'
+      error.message === 'Request failed with status code 400'
         ? 400
         : 500;
 

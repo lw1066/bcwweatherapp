@@ -1,7 +1,20 @@
 export const formatDate = (dateStr: string): string => {
-  const date = new Date(dateStr);
+  const isValidFormat = /^\d{4}-\d{2}-\d{2}$/.test(dateStr);
+  if (!isValidFormat) {
+    throw new Error("Invalid date format. Please use 'YYYY-MM-DD'.");
+  }
 
-  if (isNaN(date.getTime())) {
+  const [year, month, day] = dateStr.split('-').map(Number);
+
+  const date = new Date(year, month - 1, day);
+
+  // console.log(date, date.getTime());
+
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() + 1 !== month ||
+    date.getDate() !== day
+  ) {
     throw new Error("Invalid date format. Please use 'YYYY-MM-DD'.");
   }
 

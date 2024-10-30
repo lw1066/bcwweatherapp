@@ -1,6 +1,7 @@
 export function showUserFeedback(message: string) {
   const toast = document.createElement('div');
   toast.innerText = message;
+  toast.id = 'toast';
   toast.style.position = 'fixed';
   toast.style.bottom = '100px';
   toast.style.left = '50%';

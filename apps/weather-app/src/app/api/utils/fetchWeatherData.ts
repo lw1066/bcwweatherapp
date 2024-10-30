@@ -3,7 +3,7 @@ import {
   TodayForecast,
   WeatherData,
 } from '@weather-app/types/weather';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { formatTimeToHHMM } from '../../utils/formatTimeToHHMM';
 
 const BASE_URL =
@@ -54,14 +54,12 @@ export const fetchWeatherData = async (
 
     return { today: todayForecast, forecast };
   } catch (error) {
-    console.log('Error caught in fetchWeatherData:', error);
+    const axiosError = error as AxiosError;
 
-    if (axios.isAxiosError(error) && error.response) {
-      if (error.response.status === 400) {
-        throw new Error(
-          'Invalid location. Please check the spelling or try a different location.'
-        );
-      }
+    if (axiosError.response?.status === 400) {
+      throw new Error(
+        'Invalid location. Please check the spelling or try a different location.'
+      );
     }
 
     throw new Error('An error occurred while fetching the weather data.');

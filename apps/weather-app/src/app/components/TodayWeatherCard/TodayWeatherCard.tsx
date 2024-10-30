@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import iconMap from '../../utils/iconMap';
+import { getIconForCondition } from '../../utils/iconMap';
 import { TodayForecast, WeatherData } from 'apps/weather-app/types/weather';
 import styles from './TodayWeatherCard.module.css';
 import { formatDate } from '../../utils/formatDate';
@@ -18,7 +18,7 @@ const TodayWeatherCard: React.FC<TodayWeatherCardProps> = ({
   setWeatherData,
 }) => {
   const [location, setLocation] = useState<string>('Brighton');
-  const iconSrc = iconMap[icon] || iconMap['clear-day'];
+  const iconSrc = getIconForCondition(icon);
   const { unit } = useTemperature();
 
   const formattedDate = formatDate(date);

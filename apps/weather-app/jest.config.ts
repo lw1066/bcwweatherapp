@@ -8,4 +8,6 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/weather-app',
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  testEnvironment: 'jsdom',
 };

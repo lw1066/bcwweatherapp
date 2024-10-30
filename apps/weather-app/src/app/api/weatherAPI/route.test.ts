@@ -1,4 +1,3 @@
-import { formatTimeToHHMM } from '../../utils/formatTimeToHHMM';
 import { fetchWeatherData } from '../utils/fetchWeatherData';
 import axios, {
   AxiosError,
@@ -7,11 +6,6 @@ import axios, {
 } from 'axios';
 
 jest.mock('axios');
-
-test('formatTimeToHHMM returns properly formatted time', () => {
-  const input = '12:03:34';
-  expect(formatTimeToHHMM(input)).toBe('12:03');
-});
 
 describe('fetchWeatherData', () => {
   it('returns valid response when given a valid location', async () => {
@@ -172,7 +166,7 @@ describe('fetchWeatherData', () => {
       code: 'ERR_BAD_REQUEST',
       message: 'Request failed with status code 400',
       name: 'AxiosError',
-      config: {} as InternalAxiosRequestConfig, // You can leave this empty or customize as needed
+      config: {} as InternalAxiosRequestConfig,
       response: {
         status: 400,
         statusText: 'Bad Request',
@@ -195,6 +189,76 @@ describe('fetchWeatherData', () => {
 
     await expect(fetchWeatherData(input)).rejects.toThrow(
       'Invalid location. Please check the spelling or try a different location.'
+    );
+  });
+
+  it('throws a generic error message if the server returns a 500 status', async () => {
+    const input = 'Brighton';
+
+    const mockedAxiosError: AxiosError = {
+      isAxiosError: true,
+      code: 'ERR_INTERNAL_SERVER',
+      message: 'Request failed with status code 500',
+      name: 'AxiosError',
+      config: {} as InternalAxiosRequestConfig,
+      response: {
+        status: 500,
+        statusText: 'Internal Server Error',
+        data: 'Server Error',
+        headers: {},
+        config: {} as InternalAxiosRequestConfig,
+      },
+      toJSON: () => ({
+        message: 'Request failed with status code 500',
+        name: 'AxiosError',
+        code: 'ERR_INTERNAL_SERVER',
+        status: 500,
+      }),
+    };
+
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockRejectedValue(
+      mockedAxiosError
+    );
+
+    await expect(fetchWeatherData(input)).rejects.toThrow(
+      'An error occurred while fetching the weather data.'
+    );
+  });
+
+  it('throws a generic error message if there is a network error', async () => {
+    const input = 'Brighton';
+
+    const mockedNetworkError: AxiosError = {
+      isAxiosError: true,
+      code: 'ERR_NETWORK',
+      message: 'Network Error',
+      name: 'AxiosError',
+      config: {} as InternalAxiosRequestConfig,
+      toJSON: () => ({
+        message: 'Network Error',
+        name: 'AxiosError',
+        code: 'ERR_NETWORK',
+      }),
+    };
+
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockRejectedValue(
+      mockedNetworkError
+    );
+
+    await expect(fetchWeatherData(input)).rejects.toThrow(
+      'An error occurred while fetching the weather data.'
+    );
+  });
+
+  it('throws a generic error if an unexpected error occurs', async () => {
+    const input = 'Brighton';
+
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockRejectedValue(
+      new Error('Unexpected Error')
+    );
+
+    await expect(fetchWeatherData(input)).rejects.toThrow(
+      'An error occurred while fetching the weather data.'
     );
   });
 });
