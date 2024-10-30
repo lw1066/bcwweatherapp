@@ -50,6 +50,7 @@ const LocationInput: React.FC<LocationInputProps> = ({
       <form onSubmit={handleSubmit} className={styles.formContainer}>
         <input
           type="text"
+          id="location"
           value={inputLocation}
           onChange={handleInputChange}
           placeholder="Enter location"

@@ -30,7 +30,20 @@ const WeatherDisplay: React.FC = () => {
   }, []);
 
   if (!weatherData) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          color: 'white',
+          height: '100vh',
+          width: '100vw',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        Loading...
+      </div>
+    );
   }
 
   const { today, forecast } = weatherData;
